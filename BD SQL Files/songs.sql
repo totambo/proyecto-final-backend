@@ -170,16 +170,6 @@ VALUES (
         ' Night '
     ),
     (
-        ' Shape of My Heart ',
-        ' Sting ',
-        260,
-        ' https: / / upload.wikimedia.org / wikipedia / en / 9 / 9d / Sting_ - _Shape_Of_My_Heart.png ',
-        ' Rock ',
-        ' Reflective ',
-        ' Contemplation ',
-        ' Cloudy '
-    ),
-    (
         ' Dynamite ',
         ' BTS ',
         199,
@@ -225,26 +215,6 @@ VALUES (
         ' Sunny '
     ),
     (
-        ' I Want to Hold Your Hand ',
-        ' The Beatles ',
-        141,
-        ' https: / / upload.wikimedia.org / wikipedia / en / thumb / 5 / 53 / I_Want_to_Hold_Your_Hand.png / 220px - I_Want_to_Hold_Your_Hand.png ',
-        ' Pop ',
-        ' Romantic ',
-        ' Love ',
-        ' Cloudy '
-    ),
-    (
-        ' Bohemian Rhapsody ',
-        ' Queen ',
-        236,
-        ' https: / / upload.wikimedia.org / wikipedia / commons / thumb / f / f0 / Queen_Bohemian_Rhapsody_single_cover.jpg / 1200px - Queen_Bohemian_Rhapsody_single_cover.jpg ',
-        ' Rock ',
-        ' Happy ',
-        ' Party ',
-        ' Sunny '
-    ),
-    (
         ' Stressed Out ',
         ' Twenty One Pilots ',
         202,
@@ -283,16 +253,6 @@ VALUES (
         ' Confident ',
         ' Body Positive ',
         ' Sunny '
-    ),
-    (
-        ' Shape of My Heart ',
-        ' Sting ',
-        260,
-        ' https: / / upload.wikimedia.org / wikipedia / en / 9 / 9d / Sting_ - _Shape_Of_My_Heart.png ',
-        ' Rock ',
-        ' Reflective ',
-        ' Contemplation ',
-        ' Cloudy '
     ),
     (
         ' Yesterday ',
@@ -345,16 +305,6 @@ VALUES (
         ' Sunny '
     ),
     (
-        ' Rolling in the Deep ',
-        ' Adele ',
-        228,
-        ' https: / / upload.wikimedia.org / wikipedia / en / thumb / c / c3 / Adele_ - _Rolling_in_the_Deep_ %28single %29.png / 220px - Adele_ - _Rolling_in_the_Deep_ %28single %29.png ',
-        ' Pop ',
-        ' Emotional ',
-        ' Heartbreak ',
-        ' Rainy '
-    ),
-    (
         ' I Want to Hold Your Hand ',
         ' The Beatles ',
         141,
@@ -403,16 +353,6 @@ VALUES (
         ' Energetic ',
         ' Workout ',
         ' Cloudy '
-    ),
-    (
-        ' Bohemian Rhapsody ',
-        ' Queen ',
-        236,
-        ' https: / / upload.wikimedia.org / wikipedia / commons / thumb / f / f0 / Queen_Bohemian_Rhapsody_single_cover.jpg / 1200px - Queen_Bohemian_Rhapsody_single_cover.jpg ',
-        ' Rock ',
-        ' Dramatic ',
-        ' Artistic ',
-        ' Rainy '
     ),
     (
         ' Every Breath You Take ',
@@ -465,16 +405,6 @@ VALUES (
         'Clear'
     ),
     (
-        'Shape of You',
-        'Ed Sheeran',
-        233,
-        'https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/Shape_of_You_%28Official_Single_Cover%29_by_Ed_Sheeran.png/220px-Shape_of_You_%28Official_Single_Cover%29_by_Ed_Sheeran.png',
-        'Pop',
-        'Upbeat',
-        'Party',
-        'Sunny'
-    ),
-    (
         'November Rain',
         'Guns N'' Roses',
         537,
@@ -513,16 +443,6 @@ VALUES (
         'Energetic',
         'Party',
         'Sunny'
-    ),
-    (
-        'Hotel California',
-        'Eagles',
-        390,
-        'https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Hotelcalifornia.jpg/220px-Hotelcalifornia.jpg',
-        'Rock',
-        'Mysterious',
-        'Relaxation',
-        'Night'
     ),
     (
         'September',
@@ -624,13 +544,3 @@ VALUES (
         ' Contemplation ',
         ' Cloudy '
     ),
-    (
-        ' Rolling in the Deep ',
-        ' Adele ',
-        228,
-        ' https: / / upload.wikimedia.org / wikipedia / en / thumb / c / c3 / Adele_ - _Rolling_in_the_Deep_ %28single %29.png / 220px - Adele_ - _Rolling_in_the_Deep_ %28single %29.png ',
-        ' Pop ',
-        ' Emotional ',
-        ' Heartbreak ',
-        ' Rainy '
-    )
