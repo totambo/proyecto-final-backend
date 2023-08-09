@@ -8,4 +8,5 @@ routes.get("/songs", songs);
 
 routes.post("/createuser", createUser);
 
+// routes.get("/songartist", songsArtist);
 module.exports = routes;
