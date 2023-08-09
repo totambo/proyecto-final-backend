@@ -52,5 +52,5 @@ ADD CONSTRAINT playlist_songs_playlist_id_foreign FOREIGN KEY (playlist_id) REFE
 / / agregamos columnas a la tabla song
 ALTER TABLE song
 ADD COLUMN Mood VARCHAR(50),
-    ADD COLUMN Occasion VARCHAR(50),
+ADD COLUMN Occasion VARCHAR(50),
     ADD COLUMN Weather VARCHAR(50);
