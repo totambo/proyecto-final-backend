@@ -8,12 +8,6 @@ CREATE TABLE songs (
 );
 ALTER TABLE song
 ADD PRIMARY KEY (id);
-CREATE TABLE music_genre (
-    id SERIAL NOT NULL,
-    genre VARCHAR(50) NOT NULL
-);
-ALTER TABLE music_genre
-ADD PRIMARY KEY (id);
 CREATE TABLE playlist (
     id SERIAL NOT NULL,
     user_id BIGINT NOT NULL,
@@ -42,7 +36,6 @@ CREATE TABLE playlist_songs (
 ALTER TABLE playlist_songs
 ADD PRIMARY KEY (id);
 ALTER TABLE song
-ADD CONSTRAINT song_genre_id_foreign FOREIGN KEY (genre_id) REFERENCES music_genre (id);
 ALTER TABLE playlist
 ADD CONSTRAINT playlist_user_id_foreign FOREIGN KEY (user_id) REFERENCES users (id);
 ALTER TABLE playlist_songs
