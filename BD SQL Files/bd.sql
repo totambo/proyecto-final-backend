@@ -1,4 +1,4 @@
-CREATE TABLE song (
+CREATE TABLE songs (
     id SERIAL NOT NULL,
     title VARCHAR(255) NOT NULL,
     artist VARCHAR(75) NOT NULL,
@@ -49,8 +49,8 @@ ALTER TABLE playlist_songs
 ADD CONSTRAINT playlist_songs_song_id_foreign FOREIGN KEY (song_id) REFERENCES song (id);
 ALTER TABLE playlist_songs
 ADD CONSTRAINT playlist_songs_playlist_id_foreign FOREIGN KEY (playlist_id) REFERENCES playlist (id);
-/ / agregamos columnas a la tabla song
-ALTER TABLE song
+/ / agregamos columnas a la tabla songs
+ALTER TABLE songs
 ADD COLUMN Mood VARCHAR(50),
     ADD COLUMN Occasion VARCHAR(50),
     ADD COLUMN Weather VARCHAR(50);
