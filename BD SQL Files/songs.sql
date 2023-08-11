@@ -13,7 +13,7 @@ VALUES (
         'Bohemian Rhapsody',
         'Queen',
         236,
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Queen_Bohemian_Rhapsody_single_cover.jpg/1200px-Queen_Bohemian_Rhapsody_single_cover.jpg',
+        'https://media.pitchfork.com/photos/5bcdf986b6b4f21eb1010d1c/1:1/w_320,c_limit/Queen-Bohemian-Rhapsody-The-Original-Soundtrack-Cover-Art.jpeg.jpg',
         'Rock',
         'Happy',
         'Party',

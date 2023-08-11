@@ -20,4 +20,5 @@ routes.get("/play-list-byuser", getPlayListByUser);
 
 // routa de login
 
+// routes.get("/songartist", songsArtist);
 module.exports = routes;
