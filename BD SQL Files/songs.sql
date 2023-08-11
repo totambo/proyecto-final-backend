@@ -543,4 +543,4 @@ VALUES (
         ' Reflective ',
         ' Contemplation ',
         ' Cloudy '
-    ),
+    );
