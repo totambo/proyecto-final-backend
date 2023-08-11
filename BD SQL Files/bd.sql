@@ -4,9 +4,9 @@ CREATE TABLE songs (
     artist VARCHAR(75) NOT NULL,
     duration BIGINT NOT NULL,
     image VARCHAR(255) NOT NULL,
-    genre_id BIGINT NOT NULL
+    genre BIGINT NOT NULL
 );
-ALTER TABLE song
+ALTER TABLE songs
 ADD PRIMARY KEY (id);
 CREATE TABLE playlist (
     id SERIAL NOT NULL,
@@ -35,11 +35,11 @@ CREATE TABLE playlist_songs (
 );
 ALTER TABLE playlist_songs
 ADD PRIMARY KEY (id);
-ALTER TABLE song
+ALTER TABLE songs
 ALTER TABLE playlist
 ADD CONSTRAINT playlist_user_id_foreign FOREIGN KEY (user_id) REFERENCES users (id);
 ALTER TABLE playlist_songs
-ADD CONSTRAINT playlist_songs_song_id_foreign FOREIGN KEY (song_id) REFERENCES song (id);
+ADD CONSTRAINT playlist_songs_song_id_foreign FOREIGN KEY (song_id) REFERENCES songs (id);
 ALTER TABLE playlist_songs
 ADD CONSTRAINT playlist_songs_playlist_id_foreign FOREIGN KEY (playlist_id) REFERENCES playlist (id);
 / / agregamos columnas a la tabla songs
