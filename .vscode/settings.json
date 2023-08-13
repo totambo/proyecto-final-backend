@@ -9,6 +9,19 @@
             "name": "proyecto_final",
             "database": "proyecto_final",
             "username": "postgres"
+        },
+        {
+            "pgOptions": {
+                "ssl": true
+            },
+            "previewLimit": 50,
+            "server": "ep-summer-breeze-77183421.us-east-2.aws.neon.tech",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "neondb",
+            "username": "JestyUY",
+            "database": "neondb",
+            "password": "sC0yKEh3HVnq"
         }
     ]
 }

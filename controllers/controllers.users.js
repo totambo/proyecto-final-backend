@@ -12,6 +12,23 @@ exports.getUsers = async (rec, res) => {
   res.json(getUsers)
 }
 
+exports.getUser = async (req, res) => {
+  const getUser = await knex.select("*").from("users").where({id : req.params.id});
+    if (getUser.length === 0) {
+      res.status(404);
+      res.json({ response: "not found"})
+    } else { 
+      res.status(200);
+      res.json({ getUser });}
+ }
+
+ exports.deleteUser = async (req, res) => {
+  const deleteUser = await knex("users").where({id : req.params.id}).del();
+      res.status(200);
+      res.json({ response: "User deleted"})
+ }
+
+
 
 
 // login queda pendiente
