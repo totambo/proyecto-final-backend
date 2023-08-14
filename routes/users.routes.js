@@ -1,12 +1,7 @@
 const express = require("express");
 const routes = express.Router();
 const knex = require("../db/db");
-const {
-  songs,
-  playListUser,
-  createPlayList,
-  getPlayListByUser,
-} = require("../controllers/controllers.songs");
+
 const {
   createUser,
   getUsers,
@@ -20,12 +15,7 @@ const {
   createPlayList,
   getPlayListByUser,
 } = require("../controllers/controllers.songs");
-const {
-  createUser,
-  getUsers,
-  getUser,
-  deleteUser,
-} = require("../controllers/controllers.users");
+const { getUser, deleteUser } = require("../controllers/controllers.users");
 
 routes.get("/songs", songs);
 
