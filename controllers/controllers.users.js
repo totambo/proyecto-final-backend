@@ -36,7 +36,25 @@ exports.getUsers = async (req, res) => {
   res.json(getUsers);
 };
 
-// para login
+exports.getUser = async (req, res) => {
+  const getUser = await knex
+    .select("*")
+    .from("users")
+    .where({ id: req.params.id });
+  if (getUser.length === 0) {
+    res.status(404);
+    res.json({ response: "not found" });
+  } else {
+    res.status(200);
+    res.json({ getUser });
+  }
+};
+
+exports.deleteUser = async (req, res) => {
+  const deleteUser = await knex("users").where({ id: req.params.id }).del();
+  res.status(200);
+  res.json({ response: "User deleted" });
+};
 
 exports.login = async (req, res) => {
   try {
@@ -57,11 +75,9 @@ exports.login = async (req, res) => {
         res.status(200).json({ message: "wrong password" });
       }
     } else {
-      res
-        .status(404)
-        .json({
-          message: "there is not user register under those credentials",
-        });
+      res.status(404).json({
+        message: "there is not user register under those credentials",
+      });
     }
   } catch (error) {
     res.status(500).json({ message: "internal server error" });
