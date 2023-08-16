@@ -17,7 +17,7 @@ const {
 } = require("../controllers/controllers.songs");
 const { getUser, deleteUser } = require("../controllers/controllers.users");
 
-routes.get("/songs", verifyToken, songs);
+routes.get("/songs", songs);
 
 routes.get("/users", getUsers);
 
