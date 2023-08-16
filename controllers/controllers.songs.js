@@ -1,4 +1,5 @@
 const { knex } = require("../db/db");
+const jwt = require("jsonwebtoken");
 
 exports.songs = async (req, res) => {
   const songs = await knex.select("*").from("songs");
@@ -13,18 +14,26 @@ exports.playListUser = async (req, res) => {
 };
 
 exports.createPlayList = async (req, res) => {
-  const createPlaylist = await knex("playlist_songs").insert(req.body, "*")
-  res.status(200)
-  res.json(createPlaylist)
+  const createPlaylist = await knex("playlist_songs").insert(req.body, "*");
+  res.status(200);
+  res.json(createPlaylist);
 };
 
 exports.getPlayListByUser = async (req, res) => {
-  const getPlaylistByUser = await knex.select('*').from("playlist").innerJoin("playlist_songs", 'playlist_songs.playlist_id', 'playlist.id');
-  res.status(200)
-  res.json(getPlaylistByUser)
-}
+  // const secretKey = "secret-key";
+  // const authorization_header = req.headers["authorization"];
+  // const token = authorization_header.split(" ")[1];
 
-
+  const decodedToken = jwt.verify(req.token, "secret-key");
+  console.log(decodedToken);
+  const getPlaylistByUser = await knex
+    .select("*")
+    .from("playlist")
+    .where("user_id", "=", decodedToken.userid);
+  // .innerJoin("playlist_songs", "playlist_songs.playlist_id", "playlist.id");
+  res.status(200);
+  res.json(getPlaylistByUser);
+};
 
 /*exports.createPlaylist = async (req, res) => {
   //leo animo clima etc
@@ -37,4 +46,3 @@ exports.getPlayListByUser = async (req, res) => {
   res.status(200);
   res.json();
 };*/
-

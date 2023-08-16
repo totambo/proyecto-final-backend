@@ -17,7 +17,7 @@ const {
 } = require("../controllers/controllers.songs");
 const { getUser, deleteUser } = require("../controllers/controllers.users");
 
-routes.get("/songs", songs);
+routes.get("/songs", verifyToken, songs);
 
 routes.get("/users", getUsers);
 
@@ -29,7 +29,7 @@ routes.post("/create-user-playlist", playListUser);
 
 routes.post("/create-playlist", createPlayList);
 
-routes.get("/play-list-byuser", getPlayListByUser);
+routes.get("/play-list-byuser", verifyToken, getPlayListByUser);
 
 routes.post("/register", createUser);
 
