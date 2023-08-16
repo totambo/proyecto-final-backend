@@ -15,18 +15,21 @@ exports.createUser = async (req, res) => {
       return res.status(400).json({ message: "Email already exists" });
     } else {
       const newUser = {
-        name: req.body.name,
         email: req.body.email,
         username: req.body.username,
         password: bcrypt.hashSync(req.body.password, 10),
       };
 
       const createUser = await knex("users").insert(newUser);
-      return res.status(201).json({ message: "User created successfully" });
+      return res
+        .status(201)
+        .json({ message: "User created successfully", created: true });
     }
   } catch (error) {
     console.error("Error creating user:", error);
-    return res.status(500).json({ message: "Internal server error" });
+    return res
+      .status(500)
+      .json({ message: "Internal server error", created: false });
   }
 };
 
@@ -65,7 +68,11 @@ exports.login = async (req, res) => {
     if (loginuser) {
       if (bcrypt.compareSync(req.body.password, loginuser.password)) {
         jwt.sign(
-          { username: loginuser.username },
+          {
+            username: loginuser.username,
+            userid: loginuser.id,
+            email: loginuser.email,
+          },
           "secret-key",
           (err, token) => {
             res.status(200).json({ token: token });
@@ -80,11 +87,17 @@ exports.login = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(500).json({ message: "internal server error" });
+    res.status(500).json({ message: "internal server error" + error });
   }
 };
 
 exports.getAdmin = (req, res) => {
-  res.json({ message: "bienvenido" });
+  jwt.verify(req.token, "secret-key", (err, userData) => {
+    if (err) {
+      res.status(400).json({ message: "there is an error" });
+    } else {
+      res.status(200).json({ message: "correct data.", userData: userData });
+    }
+  });
 };
 // login queda pendiente
