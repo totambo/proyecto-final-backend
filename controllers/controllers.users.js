@@ -46,7 +46,7 @@ exports.getUser = async (req, res) => {
     res.json({ response: "not found" });
   } else {
     res.status(200);
-    res.json({ getUser });
+    res.json( getUser );
   }
 };
 
