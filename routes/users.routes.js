@@ -27,7 +27,7 @@ routes.post("/create-user", createUser);
 
 routes.post("/create-user-playlist", playListUser);
 
-routes.post("/create-playlist", createPlayList);
+routes.post("/create-playlist", verifyToken, createPlayList);
 
 routes.get("/play-list-byuser", verifyToken, getPlayListByUser);
 
