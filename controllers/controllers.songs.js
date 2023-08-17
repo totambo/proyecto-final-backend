@@ -13,10 +13,33 @@ exports.playListUser = async (req, res) => {
   res.json(playListUser);
 };
 
+// exports.createPlayList = async (req, res) => {
+//   const createPlaylist = await knex("playlist_songs").insert(req.body, "*");
+//   res.status(200);
+//   res.json(createPlaylist);
+// };
+
 exports.createPlayList = async (req, res) => {
-  const createPlaylist = await knex("playlist_songs").insert(req.body, "*");
-  res.status(200);
-  res.json(createPlaylist);
+  const songs = await knex("songs")
+    .where("weather", "=", req.body.weather)
+    .andWhere("mood", "=", req.body.mood)
+    .andWhere("occasion", "=", req.body.occasion)
+    .andWhere("genre", "=", req.body.genre);
+
+  const insertID = await knex("playlist")
+    .insert({ user_id: req.userInformation.userid, name: req.body.name })
+    .returning("id");
+  console.log(insertID);
+  const playlistID = insertID[0].id;
+
+  const newPlaylist = await songs.map((song) => ({
+    song_id: song.id,
+    playlist_id: playlistID,
+  }));
+
+  const insertingSongs = await knex("playlist_songs").insert(newPlaylist);
+
+  res.status(200).json(songs);
 };
 
 exports.getPlayListByUser = async (req, res) => {
@@ -24,8 +47,6 @@ exports.getPlayListByUser = async (req, res) => {
   // const authorization_header = req.headers["authorization"];
   // const token = authorization_header.split(" ")[1];
 
-  const decodedToken = jwt.verify(req.token, "secret-key");
-  console.log(decodedToken);
   const getPlaylistByUser = await knex
     .select("*")
     .from("playlist")
