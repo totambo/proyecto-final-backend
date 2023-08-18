@@ -14,6 +14,7 @@ const {
   playListUser,
   createPlayList,
   getPlayListByUser,
+  createPlayListByArtist,
 } = require("../controllers/controllers.songs");
 const { getUser, deleteUser } = require("../controllers/controllers.users");
 
@@ -28,6 +29,8 @@ routes.post("/create-user", createUser);
 routes.post("/create-user-playlist", playListUser);
 
 routes.post("/create-playlist", verifyToken, createPlayList);
+
+routes.post("/create-playlistbyartist", verifyToken, createPlayListByArtist);
 
 routes.get("/play-list-byuser", verifyToken, getPlayListByUser);
 

@@ -29,13 +29,35 @@ exports.createPlayList = async (req, res) => {
   const insertID = await knex("playlist")
     .insert({ user_id: req.userInformation.userid, name: req.body.name })
     .returning("id");
-  console.log(insertID);
   const playlistID = insertID[0].id;
 
   const newPlaylist = await songs.map((song) => ({
     song_id: song.id,
     playlist_id: playlistID,
   }));
+
+  const insertingSongs = await knex("playlist_songs").insert(newPlaylist);
+
+  console.log(newPlaylist)
+
+  res.status(200).json(songs);
+};
+
+
+exports.createPlayListByArtist = async (req, res) => {
+
+  const insertID = await knex("playlist")
+    .insert({ user_id: req.userInformation.userid, name: req.body.name })
+    .returning("id");
+  const playlistID = insertID[0].id;
+  
+
+  const songs = req.body.artist.map(artist =>
+    knex("songs").where("artist", "=", artist))
+  Promise.all(songs).then(response => newPlaylist = response.map((song) => ({
+    song_id: song.id,
+    playlist_id: playlistID,
+    })))
 
   const insertingSongs = await knex("playlist_songs").insert(newPlaylist);
 

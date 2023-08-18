@@ -7,8 +7,7 @@ const verifyToken = (req, res, next) => {
     console.log(authorization_header);
     const token = authorization_header.split(" ")[1];
     req.token = token;
-    const decodedToken = jwt.verify(req.token, "secret-key");
-
+    const decodedToken = jwt.verify(req.headers.authorization, "secret-key");
     req.userInformation = decodedToken;
     next();
   } else {
