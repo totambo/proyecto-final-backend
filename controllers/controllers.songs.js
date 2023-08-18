@@ -1,3 +1,4 @@
+const { response } = require("express");
 const { knex } = require("../db/db");
 const jwt = require("jsonwebtoken");
 
@@ -12,12 +13,6 @@ exports.playListUser = async (req, res) => {
   res.status(200);
   res.json(playListUser);
 };
-
-// exports.createPlayList = async (req, res) => {
-//   const createPlaylist = await knex("playlist_songs").insert(req.body, "*");
-//   res.status(200);
-//   res.json(createPlaylist);
-// };
 
 exports.createPlayList = async (req, res) => {
   const songs = await knex("songs")
@@ -43,49 +38,53 @@ exports.createPlayList = async (req, res) => {
   res.status(200).json(songs);
 };
 
-
 exports.createPlayListByArtist = async (req, res) => {
 
-  const insertID = await knex("playlist")
-    .insert({ user_id: req.userInformation.userid, name: req.body.name })
-    .returning("id");
-  const playlistID = insertID[0].id;
-  
+    const { userid } = req.userInformation;
+    const { name, artist } = req.body;
 
-  const songs = req.body.artist.map(artist =>
-    knex("songs").where("artist", "=", artist))
-  Promise.all(songs).then(response => newPlaylist = response.map((song) => ({
-    song_id: song.id,
-    playlist_id: playlistID,
-    })))
+    const [playlistID] = await knex("playlist").insert({ user_id: userid, name }).returning("id");
 
-  const insertingSongs = await knex("playlist_songs").insert(newPlaylist);
+    const songsPromises = artist.map(async (artistName) => {
+      const songs = await knex("songs").where("artist", "=", artistName);
+      return songs;
+    });
 
-  res.status(200).json(songs);
-};
+    const songsArrays = await Promise.all(songsPromises);
+    const songs = songsArrays.flat();
+
+    const newPlaylist = songs.map((song) => ({
+      song_id: song.id,
+      playlist_id: playlistID.id,
+    }))
+    
+    const insertingSongs = await knex("playlist_songs").insert(newPlaylist);
+    res.status(200).json({ message: "Playlist created successfully." });
+  };
+
 
 exports.getPlayListByUser = async (req, res) => {
-  // const secretKey = "secret-key";
-  // const authorization_header = req.headers["authorization"];
-  // const token = authorization_header.split(" ")[1];
 
-  const getPlaylistByUser = await knex
-    .select("*")
-    .from("playlist")
-    .where("user_id", "=", decodedToken.userid);
-  // .innerJoin("playlist_songs", "playlist_songs.playlist_id", "playlist.id");
+  // const getPlaylistByUser = await knex("playlist_songs")
+  // .orderBy("playlist.id", "desc")
+  // .select("songs.*", "playlist.name")
+  // .join("playlist", "playlist_songs.playlist_id", "=", "playlist.id")
+  // .join("songs", "playlist_songs.song_id", "=", "songs.id")
+  // .where("playlist.user_id", req.userInformation.userid);
+  // res.json(getPlaylistByUser);
+  // console.log(getPlaylistByUser)
+
+  const playlistSongs = await knex("playlist_songs")
+  .orderBy("playlist.id", "desc")
+  .first("playlist.id")
+  .select("songs.*", "playlist.name as playlist_name")
+  .innerJoin("playlist", "playlist_songs.playlist_id", "playlist.id")
+  .innerJoin("songs", "playlist_songs.song_id", "songs.id")
+  .where("playlist.user_id", req.userInformation.userid);
+  console.log(playlistSongs)
+
   res.status(200);
-  res.json(getPlaylistByUser);
+  res.json(playlistSongs);
+
+  //esta mal, no me dio para terminar son las 4 de la matina :(
 };
-
-/*exports.createPlaylist = async (req, res) => {
-  //leo animo clima etc
-  //busco las canciones que encajan
-  //creo nueva playlist con nombre y obtengo su id
-  //para ese id inserto todas las canciones que encontre en la tabla playlist_songs
-  //devuelvo el el objeto de la playlist para el usuario
-  const createPlaylistName = await knex("playlist").insert(req.body, "name");
-  const createPlaylist = await knex("playlist_songs").insert()
-  res.status(200);
-  res.json();
-};*/
